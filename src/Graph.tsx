@@ -11,6 +11,7 @@ interface IProps {
 interface PerspectiveViewerElement extends HTMLElement {
   load: (table: Table) => void;
 }
+
 class Graph extends Component<IProps, {}> {
   table: Table | undefined;
 
@@ -25,11 +26,9 @@ class Graph extends Component<IProps, {}> {
     )[0] as unknown) as PerspectiveViewerElement;
 
     const schema = {
-      price_ABC: "float",
-      price_DEF: "float",
-      stock: "string",
-      top_ask_price: "float",
-      top_bid_price: "float",
+      price_abc: "float",
+      price_def: "float",
+      ratio: "float",
       timestamp: "date",
       upper_bound: "float",
       lower_bound: "float",
@@ -53,10 +52,11 @@ class Graph extends Component<IProps, {}> {
         JSON.stringify({
           price_abc: "avg",
           price_def: "avg",
+          ratio: "avg",
+          timestamp: "distinct count",
           upper_bound: "avg",
           lower_bound: "avg",
           trigger_alert: "avg",
-          timestamp: "distinct count",
         })
       );
     }
